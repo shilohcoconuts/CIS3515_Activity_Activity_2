@@ -7,12 +7,18 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
 
+ const val CATKEY: String = "meow"
+
 class DisplayActivity : AppCompatActivity() {
 
     // TODO Step 1: Launch TextSizeActivity when button clicked to allow selection of text size value
 
     val launcher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
-
+        if(it.resultCode== RESULT_OK){
+            it.data?.apply{
+                lyricsDisplayTextView.textSize = getIntExtra(CATKEY, 22).toFloat()
+            }
+        }
     }
 
 
